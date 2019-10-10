@@ -5,6 +5,11 @@ class Block {
     this.x = random(0 + this.w, width - this.w);
     this.y = random(0 + this.h, height/1.5);
     this.life = random(1, 5);
+
+    this.minX = this.x - this.w/2;
+    this.maxX = this.x + this.w/2;
+    this.minY = this.y - this.h/2;
+    this.maxY = this.y + this.h/2;
   }
 
   draw(){
@@ -14,4 +19,5 @@ class Block {
     rectMode(CENTER);
     rect(this.x,this.y,this.w,this.h);
   }
+
 }

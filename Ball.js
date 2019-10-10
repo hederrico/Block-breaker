@@ -8,6 +8,9 @@ class Ball {
     this.xspeed = random(this.side)*random(this.velocity);
     this.radius = 10;
     this.history = [];
+    this.vertex = [];
+
+
   }
 
   update() {
@@ -51,7 +54,7 @@ class Ball {
   }
 
 
-  colision(bars, blocks){
+  barCollision(bars){
     for (var i = 0; i < bars.length; i++) {
       if ((abs(this.x - bars[i].x) <= bars[i].w) && (abs(this.y - bars[i].y) <= this.radius)) {
         this.yspeed *= -1.05;
@@ -59,4 +62,20 @@ class Ball {
     }
   }
 
+  blockCollision(point, blocks){
+
+    if (dist(this.x,this.y,point.x,point.y) <= this.radius) {
+      if (this.x > blocks.minX) {
+        if (this.x < blocks.maxX) {
+          this.yspeed *= -1.01;
+        }
+      }
+
+      if (this.y > blocks.minY) {
+        if (this.y < blocks.maxY) {
+          this.xspeed *= -1.01;
+        }
+      }
+    }
+  }
 }
